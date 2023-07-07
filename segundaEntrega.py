@@ -1,5 +1,8 @@
+import unittest
+from binary_tree import BinaryTree
+
 # EJERCICIO 1
-class Node:
+class Node(unittest.TestCase):
     def __init__(self, data):
         self.data = data
         self.next = None
@@ -66,7 +69,7 @@ print(datos)
 
 
 # EJERCICIO 2
-class Node:
+class Node(unittest.TestCase):
     def __init__(self, data):
         self.data = data
         self.left = None
@@ -145,3 +148,39 @@ class BinaryTree:
             self._listar_recursivo(current_node.left, lista_datos)
             lista_datos.append(current_node.data)
             self._listar_recursivo(current_node.right, lista_datos)
+            
+# EJERCICIO 3
+
+# Test Linked List
+
+# Test BinaryTree
+class BinaryTreeTests(unittest.TestCase):
+    def test_agregar(self):
+        tree = BinaryTree()
+        tree.agregar(2)
+        tree.agregar(1)
+        self.assertEqual(tree.listar(), [1, 2])
+
+    def test_buscar(self):
+        tree = BinaryTree()
+        tree.agregar(2)
+        self.assertTrue(tree.buscar(2))
+        self.assertFalse(tree.buscar(9))
+
+    def test_borrar(self):
+        tree = BinaryTree()
+        tree.agregar(5)
+        tree.agregar(2)
+        tree.agregar(7)
+        tree.borrar(2)
+        self.assertEqual(tree.listar(), [5, 7])
+
+    def test_listar(self):
+        tree = BinaryTree()
+        tree.agregar(5)
+        tree.agregar(2)
+        tree.agregar(7)
+        self.assertEqual(tree.listar(), [ 2, 5, 7])
+
+if __name__ == '__main__':
+    unittest.main()
